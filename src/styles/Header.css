@@ -1,0 +1,23 @@
+.header{
+    background-color: #2980B9;
+   
+}
+ul{
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    justify-content: space-around;
+}
+a {
+    font-weight: bold;
+  padding: 10px;
+  list-style-type: none;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+  background-color: #dedada;
+  color: black;
+}
