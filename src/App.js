@@ -14,7 +14,8 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <Header />
+
+      <Header />
         <main>
           <Switch>
             <Route path="/" exact component={Profile} />

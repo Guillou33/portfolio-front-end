@@ -1,3 +1,7 @@
+# Ressources
+
+Ressources provided in ressources repository with MDD, wireframes, backlog and link to back-end repository
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
