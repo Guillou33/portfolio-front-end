@@ -15,7 +15,7 @@ export default function Header() {
                 <Link  to="/contact">
                     <li>Me Contacter</li>
                 </Link>
-                <Link to="/admin/auth">
+                <Link to="/login">
                     <li>Tableau de bord</li>
                 </Link>
             </ul>

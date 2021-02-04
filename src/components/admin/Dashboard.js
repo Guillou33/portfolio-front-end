@@ -92,12 +92,7 @@ export default function Dashboard() {
 
     return (
         <>
-        <section>
-            <div>
-                <h1>Profil</h1>
-                <textarea name='presentationProfile' rows='4' cols='40'></textarea>
-                <input type='button' value='+' name='set'/> 
-            </div>
+        <section className='sectionAdmin'>
             <div>
             <h1>Compétences</h1>
                 {skills.map(skill => {
@@ -107,7 +102,7 @@ export default function Dashboard() {
                     </div>);
                     }
                 )}
-                {btnAddSkill ? (<input type='button' value='Nouvelle Compétence' onClick={() => setBtnAddSkill(false)}/>) :
+                {btnAddSkill ? (<input className='inputBtn' type='button' value='Nouvelle Compétence' onClick={() => setBtnAddSkill(false)}/>) :
                 (<form onSubmit={handleSubmit(submitSkill)}>
                     <input placeholder="Compétence" type="text" name="nomCompetence" ref={register} required/>
                     <select ref={register} name="niveau">
@@ -122,18 +117,19 @@ export default function Dashboard() {
                 </form>)}
             </div>
         </section>
-        <section>
+        <section className='sectionAdmin'>
         <div>
             <h1>Clients</h1>
-                <ul>
+                <div>
                     {clients.map(client =>{
                         return (
                         <div key={client.idClient}>
+                            <h3>{client.nomSociete}</h3>
                             <Client client={client} /><input type='button' value='X' onClick={() => deleteClient(client.idClient)} />
                         </div>);
                     })}
-                </ul>
-                {btnAddClient ? (<input type='button' value='Nouveau Client' onClick={() => setBtnAddClient(false)}/>) :
+                </div>
+                {btnAddClient ? (<input className='inputBtn' type='button' value='Nouveau Client' onClick={() => setBtnAddClient(false)}/>) :
                 (<form onSubmit={handleSubmit(submitClient)}>
                     <input placeholder="Nom de la société" type="text" name="nomSociete" ref={register} required/>
                     <input placeholder="Site de la Société" type="text" name="urlSociete" ref={register} />
@@ -146,15 +142,16 @@ export default function Dashboard() {
             </div>
             <div>
                 <h1>Projets</h1>
-                <ul>
+                <div>
                     {projects.map(project =>{
                         return (
                         <div key={project.idProjet}>
+                            <h3>{project.nomProjet}</h3>
                             <Project project={project} clients={clients} /><input type='button' value='X' onClick={() => deleteProject(project.idProject)} />
                         </div>);
                     })}
-                </ul>
-                {btnAddProject ? (<input type='button' value='Nouveau Projet' onClick={() => setBtnAddProject(false)}/>) :
+                </div>
+                {btnAddProject ? (<input className='inputBtn' type='button' value='Nouveau Projet' onClick={() => setBtnAddProject(false)}/>) :
                 (<form onSubmit={handleSubmit(submitProject)}>
                     <input placeholder="Nom de l'application" type="text" name="nomProjet" ref={register} required/>
                     <input placeholder="URL de l'application" type="text" name="urlApp" ref={register} />

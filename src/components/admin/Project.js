@@ -4,10 +4,7 @@ import '../../styles/Admin.css';
 
 export default function Project(props) {
 
-    console.log(props);
     const [project, setProject] = useState(props.project);
-
-    const projectsOptions = ['Débutant', 'Novice', 'Intermédiaire', 'Avancé', 'Expert'];
 
     useEffect(() => {
         axios.get(`http://localhost:5000/projects/${project.idProjet}`)
@@ -34,7 +31,6 @@ export default function Project(props) {
     return (
     <>
         <div>
-            <h3>{project.nomProjet}</h3>
             <label>Projet : </label>
             <input type="text" value={project.nomProjet} onChange={(e) => {
                 updateProject({"nomProjet": e.target.value}, project.idProjet);
@@ -53,6 +49,7 @@ export default function Project(props) {
             }} required></textarea>
         </div>
         <div>
+            <label>Société : </label>
             <select defaultValue={project.nomSociete} onChange={(e) => updateClientProject({"nomSociete": e.target.value}, project.idProjet)}>
                 <option value={null}></option>
                 {props.clients.map(client => {
