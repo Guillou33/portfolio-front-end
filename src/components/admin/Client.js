@@ -12,7 +12,7 @@ export default function Client(props) {
             .then((data) => {
                 setClient(data);
             });
-    },[]);
+    },[client]);
 
     const updateClient = async (value, id) => {
         await axios.put(`http://localhost:5000/clients/${id}`, value)
