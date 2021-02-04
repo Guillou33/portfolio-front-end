@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Skill from './Skill';
+import Client from './Client';
+import Project from './Project';
 import '../../styles/Admin.css';
 
 // import API from '../services/API';
@@ -16,6 +18,7 @@ export default function Dashboard() {
     const [clients, setClients] = useState([]);
     const [projects, setProjects] = useState([]);
     const [btnAddSkill, setBtnAddSkill] = useState(true);
+    const [btnAddSkillToProject, setBtnAddSkillToProject] = useState(true);
     const [btnAddClient, setBtnAddClient] = useState(true);
     const [btnAddProject, setBtnAddProject] = useState(true);
 
@@ -70,7 +73,21 @@ export default function Dashboard() {
     }
 
     const deleteSkill = async (id) => {
-        console.log(id);
+        // console.log(id);
+        axios.delete(`http://localhost:5000/skills/${id}`)
+            .then((res)=> setSkills(skills.filter(skill => skill.idCompetence !== id)));
+    }
+
+    const deleteProject = async (id) => {
+        // console.log(id);
+        axios.delete(`http://localhost:5000/projects/${id}`)
+            .then((res)=> setProjects(projects.filter(project => project.idProjet !== id)));
+    }
+
+    const deleteClient = async (id) => {
+        // console.log(id);
+        axios.delete(`http://localhost:5000/clients/${id}`)
+            .then((res)=> setClients(clients.filter(client => client.idClient !== id)));
     }
 
     return (
@@ -86,7 +103,7 @@ export default function Dashboard() {
                 {skills.map(skill => {
                     return (
                     <div key={skill.idCompetence}>
-                        <Skill props={skill.idCompetence} /><input type='button' value='X' onClick={() => deleteSkill(skill.idCompetence)} />
+                        <Skill skill={skill} /><input type='button' value='X' onClick={() => deleteSkill(skill.idCompetence)} />
                     </div>);
                     }
                 )}
@@ -110,7 +127,10 @@ export default function Dashboard() {
             <h1>Clients</h1>
                 <ul>
                     {clients.map(client =>{
-                        return (<li key={client.idClient}><a href={client.urlSociete}>{client.nomSociete}</a></li>);
+                        return (
+                        <div key={client.idClient}>
+                            <Client client={client} /><input type='button' value='X' onClick={() => deleteClient(client.idClient)} />
+                        </div>);
                     })}
                 </ul>
                 {btnAddClient ? (<input type='button' value='Nouveau Client' onClick={() => setBtnAddClient(false)}/>) :
@@ -128,7 +148,10 @@ export default function Dashboard() {
                 <h1>Projets</h1>
                 <ul>
                     {projects.map(project =>{
-                        return (<li key={project.idProjet}>{project.nomProjet}</li>);
+                        return (
+                        <div key={project.idProjet}>
+                            <Project project={project} clients={clients} /><input type='button' value='X' onClick={() => deleteProject(project.idProject)} />
+                        </div>);
                     })}
                 </ul>
                 {btnAddProject ? (<input type='button' value='Nouveau Projet' onClick={() => setBtnAddProject(false)}/>) :
