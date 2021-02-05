@@ -23,7 +23,7 @@ export default function Contact() {
     },[]);
 
     const setCommentary = async (values) => {
-        await axios.post('http://localhost:5000/commentaries/', values)
+        await axios.post('http://localhost:5000/commentaries', values)
             .then(res => {
             setCommentaries([...commentaries, res.data]);
           });
@@ -33,22 +33,23 @@ export default function Contact() {
         <div className='container'>
             <div>
                 <h2>Contacts</h2>
-                <label>Adresse mail : </label><span>{developper.mail}</span>
-                <label>Téléphone : </label><span>{developper.tel}</span>
-                <label>Compte Github : </label><span><a href={`https://github.com/${developper.compteGithub}`}>{developper.compteGithub}</a></span>
+                <label>Adresse mail : </label><span>{developper.mail}</span><br />
+                <label>Téléphone : </label><span>{developper.tel}</span><br />
+                <label>Compte Github : </label><span><a href={`https://github.com/${developper.compteGithub}`}>{developper.compteGithub}</a></span><br />
                 <label>Compte LinkedIn : </label><span><a href={`https://www.linkedin.com/in/${developper.compteLinkedIn}`}>Gilles Autier</a></span>
             </div>            
             <div>
                 <h2>Commentaires</h2>
                 <form onSubmit={handleSubmit(setCommentary)}>
-                    <label>Votre Nom :</label><input type='text' ref={register} name="auteurCommentaire" />
+                    <label>Votre Nom :</label><input type='text' ref={register} name="auteurCommentaire" /><br />
                     <label>Votre Commentaire :</label><textarea ref={register} name="texteCommentaire" cols="40" rows="4"></textarea>
                     <input type="submit" value="Commenter" />
                 </form>
                 <div>
                 {commentaries.map(comm => {
                     return (<div key={comm.idCommentaire}>
-                        <span>{comm.auteurCommentaire}</span><p>{comm.texteCommentaire}</p>
+                        <span style={{fontSize: '0.8em'}}>Publié par : {comm.auteurCommentaire}</span>
+                        <p>{comm.texteCommentaire}</p>
                         </div>
                     );
                 })}

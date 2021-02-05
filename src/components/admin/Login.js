@@ -9,7 +9,6 @@ export default function Login() {
     let history = useHistory();
 
     const onSubmit = async (data) => {
-        console.log('sending credentials', data);
           await axios.post('http://localhost:5000/developpers/auth', data)
           .then((res) => {
             if(res.data === 'OK'){

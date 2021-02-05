@@ -18,7 +18,6 @@ export default function Dashboard() {
     const [clients, setClients] = useState([]);
     const [projects, setProjects] = useState([]);
     const [btnAddSkill, setBtnAddSkill] = useState(true);
-    const [btnAddSkillToProject, setBtnAddSkillToProject] = useState(true);
     const [btnAddClient, setBtnAddClient] = useState(true);
     const [btnAddProject, setBtnAddProject] = useState(true);
 
